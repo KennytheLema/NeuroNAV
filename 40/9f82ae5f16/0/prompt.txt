@@ -1,0 +1,7 @@
+<ide_opened_file>The user opened the file /Users/rei/NeuroNAV/examples/interactions/positive/01-task-initiation-maya.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+move all of the examples of interactions and palce tehm inside claude so it can learn form them
+
+---
+
+<ide_opened_file>The user opened the file /Users/rei/NeuroNAV/.claude/user-profiles.json in the IDE. This may or may not be related to the current task.</ide_opened_file>
+in the readme file, make step by step how to use the agent, anke it clear and do not make it oversaturated with words
