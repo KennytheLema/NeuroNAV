@@ -1,0 +1,241 @@
+<ide_opened_file>The user opened the file /Users/rei/NeuroNAV/.claude/settings.json in the IDE. This may or may not be related to the current task.</ide_opened_file>
+how do i fix this Claude CLI exited with code 1: ✘ Failed to add marketplace: Marketplace file not found at /Users/rei/.claude/plugins/marketplaces/temp_1776304813465/.claude-plugin/marketplace.json
+
+---
+
+<ide_opened_file>The user opened the file /Users/rei/NeuroNAV/.entire/metadata/70bfdaba-33a1-44ba-86af-2cc144879f28/full.jsonl in the IDE. This may or may not be related to the current task.</ide_opened_file>
+how to fix this; Claude CLI exited with code 1: ✘ Invalid marketplace source format. Try: owner/repo, https://..., or ./path
+
+---
+
+im trying to install superpowers plugin, im trying to install it to my claude
+
+---
+
+claude plugins marketplace add obra/superpowers-marketplace
+claude plugins install superpowers
+
+---
+
+zsh: command not found: claude
+zsh: command not found: claude
+
+---
+
+<ide_opened_file>The user opened the file /Users/rei/NeuroNAV/.claude/settings.json in the IDE. This may or may not be related to the current task.</ide_opened_file>
+acting as a world class prompt engineer, create a comprehensive plan for creting claude skills, a set of workflow steps, and interaction examples of how these skills coudl be used , a set of example data about users that woudl be in an actual system for an agent like this, and example user interaction sequences both positive / beneficial and not helpful . create that for the follwoign agent we want to protoptype ; Neurodiversity Support Agent: AI agent that helps people with neurodiversity magnify benefits of their neurodiversity and navigate social systems/practices that may not have been designed to support them well.
+
+helps you translate abstract self-knowledge ("I have ADHD") into situated action ("because you do your best deep work in 45-minute bursts, here's how to approach this week's assignments") walks you through confusing or ambiguous academic situations step by step —
+interpreting assignment instructions, decoding rubric language, figuring out what a professor actually expects
+helps you prepare for and debrief socially demanding situations: class presentations, group meetings, networking events, advisor check-ins
+recommends a full toolkit of strategies, not just AI-based ones: body-doubling for accountability, interest-based task reframing for motivation, environmental changes for sensory comfort, peer study groups for social energy
+helps you recognize and interrupt masking, burnout, and over-accommodation patterns by reflecting with you on how you're actually doing — not just how your grades look
+# NeuroNav: Engineering Blueprint for a Neurodiversity Support Agent
+
+**NeuroNav should be built directly on the Claude Messages API using CollaborAITE's native tools — not on a separate framework.** The platform already provides RAG retrieval, web search, ask-user-for-input, and run-a-sub-agent, which makes Smolagents, DSPy, and even the Claude Agents SDK redundant or counterproductive for this use case. The team's 4-week build should focus on prompt engineering, sub-agent orchestration, and RAG-aware module design using Claude Code to iterate on skills. This report delivers implementation-ready guidance for all six modules, covering framework selection, RAG architecture, module-specific technical patterns, interaction design, evaluation protocols, and curated knowledge base resources.
+
+---
+
+## Why the Claude Messages API wins over all three frameworks
+
+The critical insight is that **CollaborAITE already provides the agent infrastructure**. Smolagents and DSPy both implement their own tool execution loops and retrieval pipelines — these would conflict with CollaborAITE's existing RAG, web search, and sub-agent tools rather than complement them.
+
+The **Claude Agents SDK** is designed for code-focused agents (file reading, command execution, codebase manipulation). It handles tool loops autonomously but targets developer tooling, not conversational coaching. The **Smolagents** library from Hugging Face is elegantly minimal (~1,000 lines of core code) and supports multi-agent orchestration with `managed_agents`, but its `CodeAgent` and `ToolCallingAgent` abstractions are task-completion-oriented — each `.run()` call is a single task, not an ongoing dialogue. **DSPy** offers powerful automatic prompt optimization that raised RAG accuracy from ~42% to ~61% SemanticF1 in benchmarks, but its learning curve is too steep for a 4-week sprint and its batch-oriented optimization workflow doesn't fit real-time chat.
+
+The recommended stack is straightforward:
+
+- **Runtime**: Claude Messages API with tool use, defining CollaborAITE tools as Claude tool schemas
+- **Development**: Claude Code for iterating on system prompts, agent skills, and conversation flows
+- **Architecture**: Orchestrator-worker pattern using CollaborAITE's `run-a-sub-agent` for module delegation
+- **Future optimization**: DSPy for post-launch prompt tuning once training data from real conversations exists
+
+Claude Code's skill development workflow follows the **"Claude A / Claude B" pattern**: Claude A (development session) helps design skill instructions as `SKILL.md` files with YAML frontmatter, Claude B (separate instance) tests the skills against real tasks, and the team iterates based on observed behavior. Skills live in `.claude/skills/` directories, with one skill per NeuroNav module. The team should use the **Explore → Plan → Implement → Commit** workflow and manage context aggressively, starting fresh sessions for each module.
+
+---
+
+## Sub-agent architecture maps directly to the six modules
+
+CollaborAITE's `run-a-sub-agent` tool accepts a prompt and data, creating a natural orchestrator-worker pattern. The NeuroNav router agent identifies user intent and dispatches to specialized sub-agents, each with focused system prompts and structured context objects.
+
+The context-passing pattern should use **structured JSON objects** that include only what each sub-agent needs — a conversation summary (not full history), the user profile, task-specific RAG results, and an explicit output format specification. After receiving sub-agent results, the router compresses the output, presents it with neurodivergent-friendly formatting, and asks for user feedback. This **context isolation** prevents the "context rot" problem where accumulated conversation history degrades response quality.
+
+The router's system prompt should classify every @mention into one of six intents: `profile_update`, `assignment_help`, `schedule_request`, `strategy_request`, `social_prep`, or `wellbeing_check`. When intent is ambiguous, the router should **assume and proceed with stated assumptions** rather than asking clarifying questions — a critical design choice for ADHD users who experience question fatigue rapidly.
+
+```
+NeuroNav Router (Parent Agent)
+├── 📋 Profile Manager Sub-agent
+│     Data: {user_id, conversation_history_summary}
+├── 📖 Assignment Decoder Sub-agent
+│     Data: {user_profile, rubric_chunks, syllabus_chunks, slide_chunks}
+├── ⏰ Schedule Builder Sub-agent
+│     Data: {user_profile, deadlines, class_schedule, work_schedule}
+├── 💡 Strategy Recommender Sub-agent
+│     Data: {user_profile, current_task, energy_level, strategy_history}
+├── 🤝 Social Prep Sub-agent
+│     Data: {user_profile, upcoming_event, prior_scripts}
+└── 💚 Wellbeing Monitor Sub-agent
+      Data: {user_profile, sentiment_history, engagement_metrics}
+```
+
+---
+
+## RAG architecture needs type-aware chunking and mandatory profile injection
+
+The single most important RAG design decision is: **never rely on similarity search to find the user profile**. Instead, programmatically inject the full user profile into every LLM context window as a fixed block, alongside whatever documents are retrieved via search. The profile is always relevant, and similarity search will inconsistently surface it. This "mandatory context injection" pattern is validated by PersonaRAG research and production personalized RAG systems.
+
+### Chunking strategies must vary by document type
+
+**Academic rubrics** should be chunked per criterion (one chunk per rubric row, typically **100–300 tokens**), because splitting a criterion across chunks destroys grading context. Attach metadata: `{doc_type: "rubric", course_id, assignment_name, criterion_name, weight}`. **Syllabi** use section-based recursive chunking at **300–500 tokens**, with the critical rule that schedule/deadline tables must never split across chunks. Extract all dates into a separate structured index for calendar queries. **Conversation logs** use speaker-turn-based chunking at **200–400 tokens** with 20–50% overlap to preserve dialogue coherence, never splitting a speaker's turn mid-statement. **User profiles** are stored as **complete documents** (never chunked) at ~500–1,500 tokens. **Class slides** chunk at the slide level (**200–500 tokens** per slide), merging thin slides with adjacent ones.
+
+Every chunk gets a **contextual header** prepended before embedding: `"Document: ENG101 Essay Rubric | Type: Rubric | Course: ENG101 | Assignment: Midterm Essay"` — this dramatically improves retrieval accuracy by giving embeddings richer contextual signal.
+
+### Cross-document retrieval uses query decomposition
+
+When a student asks "help me plan my essay that's due Friday," the system should decompose this into parallel sub-queries: (1) "What is the deadline?" → search syllabi; (2) "What are the rubric criteria?" → search rubrics; (3) "What is the student's work style?" → inject profile; (4) "Which lectures cover essay topics?" → search slides; (5) "Has the student discussed this before?" → search conversation logs. Research shows query decomposition yields **+36.7% MRR@10** improvement over standard single-query RAG. Use a router to detect query complexity — simple queries skip decomposition.
+
+### Longitudinal pattern detection from conversation history
+
+To detect patterns like "you've mentioned running out of time on conclusions three times," store each conversation turn with rich metadata (timestamp, topics, entities, sentiment) and run periodic LLM-based pattern extraction after every 5 sessions. The extraction prompt asks Claude to identify recurring challenges, successful strategies, emotional patterns, and topic trends. Store patterns in a dedicated "pattern store" retrievable at query time. This is more practical than real-time NLP pipelines for a 4-week build.
+
+---
+
+## Module 1: Profile Manager uses progressive disclosure and the Dawson/Guare framework
+
+The intake should collect information in three phases to avoid overwhelming neurodivergent users. **Phase 1 (onboarding, ~8 questions)** captures self-identification, top 3 challenges, communication preferences, and energy patterns. **Phase 2 (first week, ~10 questions)** covers executive function profile, sensory preferences, and work-style patterns. **Phase 3 (ongoing)** refines the profile through conversational check-ins based on observed patterns.
+
+The **Dawson and Guare Executive Skills Framework** identifies 12 executive skills (the original framework listed 11; the ESQ-R added stress tolerance). The four most critical for academic support are **task initiation, planning/prioritization, time management, and sustained attention**. Rather than formal assessment, NeuroNav should use conversational probes: "When you have an assignment, what usually happens between knowing about it and starting it?" (task initiation), "If I asked you to guess how long your next assignment will take, how confident would you be?" (time management).
+
+The profile schema should capture differentiated energy types — not just "low/medium/high" but separate **focus spoons, social spoons, sensory spoons, executive function spoons, and masking spoons**. A student may have plenty of physical energy but zero executive function capacity. This maps to the "spoon theory" adaptation from neurodivergent community practice. The schema also stores agent interaction preferences (tone, verbosity, check-in frequency, motivational style), allowing personalization of NeuroNav's communication approach.
+
+All intake questions must use **affirming framing**: "We want to understand how your brain works best" rather than clinical assessment language. Allow self-identification without requiring formal diagnosis. The intake should feel like a conversation, not a medical intake form.
+
+---
+
+## Module 2: Assignment Decoder parses rubrics and translates the hidden curriculum
+
+The Assignment Decoder's core function is extracting implicit expectations from rubric language and translating academic jargon into concrete actions. A structured parsing prompt instructs Claude to extract each criterion's name, weight, performance levels, **implicit expectations** (things assumed but not stated), key action verbs, and a plain-language translation. The prompt specifically asks: "For implicit expectations, identify things the rubric assumes but doesn't explicitly state."
+
+A maintained **jargon translation dictionary** maps common academic terms to concrete meanings: "Critical engagement" means "don't just describe — explain why it matters, what's wrong with it, or what it leaves out." "Demonstrate synthesis" means "combine ideas from multiple sources into your own argument, don't just list what each source says separately." "Scholarly voice" means "write formally in third person, use hedging language, cite everything, no contractions." This dictionary addresses a core challenge: neurodivergent students — particularly autistic students — often process instructions literally, so "analyze" doesn't intuitively translate to "break apart and examine relationships."
+
+For task decomposition, the module should follow **Goblin Tools' Magic ToDo pattern**: every step starts with an action verb, no step exceeds 45 minutes, each step includes a time estimate and energy-level indicator (🟢 Low / 🟡 Medium / 🔴 Deep focus), and steps are grouped into phases with checkpoint milestones. The **"spiciness" concept** from Goblin Tools is directly applicable — when a student indicates they're more overwhelmed, the decomposition becomes more granular. A recursive approach lets students request further breakdown of any step that still feels too large, matching the platform's sub-agent architecture (the Decoder sub-agent can call another sub-agent to decompose a specific step).
+
+Cross-referencing uses RAG to pull rubric criteria alongside related class slides and professor's in-class explanations. The prompt pattern asks Claude to synthesize across all sources: "What does the professor ACTUALLY expect for this criterion? Which specific lecture topics are most relevant? Are there any contradictions between sources?"
+
+---
+
+## Module 3: Schedule Builder accounts for time-blindness and energy fluctuations
+
+The scheduling algorithm operates on energy, not just time. The constraint-based approach works in 12 steps: (1) multiply all time estimates by a **1.3 buffer factor** for ADHD; (2) classify tasks by energy requirement; (3) map fixed commitments; (4) identify available blocks; (5) assign high-energy tasks to peak-energy windows; (6) assign low-energy tasks to dip periods; (7) insert mandatory breaks; (8) insert **5–10 minute transition time** between context switches (each task switch costs significant executive function for ADHD brains); (9) add sensory breaks every 2–3 hours; (10) back-schedule from deadlines; (11) ensure no day exceeds the user's max productive hours; (12) leave **20–30% of schedule as unscheduled buffer**.
+
+Research on optimal work-burst durations reveals a clear framework: **micro-bursts (10–15 minutes)** for tasks triggering strong avoidance or when energy is depleted; **standard Pomodoro (25 minutes)** for routine work; **extended focus (45–50 minutes)** for creative work during peak energy; and **deep work (60–90 minutes)** only during hyperfocus-compatible conditions. Break management is critical — a 5-minute break can become 30 minutes of scrolling. Pre-planned offline break activities (stretching, walking, hydration) and a second timer for breaks prevent this.
+
+For deadline extraction from PDF syllabi, a structured Claude prompt extracts all dates into JSON with `date_confidence` flags ("exact," "inferred," or "ambiguous"), handles relative dates ("Week 3," "the Tuesday after spring break"), and separates recurring items from one-time deadlines. A validation step cross-checks extracted dates against any schedule grids in the document.
+
+Schedule presentation in chat uses **box-drawing characters, emoji anchors, and energy indicators** to create visual structure despite text-only constraints. Each task block shows duration (⏱️), energy level (🟢/🟡/🔴), inline micro-instructions (1–2 bullet points with verb-first language), and flexibility markers ("Fixed" vs. "Flex"). Daily summaries provide progress bars (`▓▓▓░░ 60%`) and quick-win counts for dopamine reward. A "Next Up" format shows just the immediate task for students who find full schedules overwhelming — mirroring Tiimo's "what comes next" philosophy.
+
+---
+
+## Module 4: Strategy Recommender matches interventions to profiles using the INCUP framework
+
+The Strategy Recommender should never prescribe one-size-fits-all advice. Instead, it uses a **decision tree** that combines current task type, energy level, time available, and the student's executive function profile to generate **2–3 alternatives** per recommendation.
+
+The **interest-based nervous system model** (William Dodson) is the conceptual foundation. ADHD brains operate on an interest-based rather than importance-based system, organized around five motivational pillars (INCUP): **Interest, Novelty, Challenge/Competition, Urgency, and Passion**. When a student procrastinates, the module identifies which INCUP lever might activate engagement: "Want to race the clock? Set a 15-min timer and see how much you can get done" (urgency + challenge), or "What if you tried a completely different approach?" (novelty).
+
+Evidence-based strategies with strong support include **body doubling** (a FLOWN study of 117 ADHD adults showed 30% average anxiety reduction after 12 weeks of virtual body doubling), **modified Pomodoro variations** calibrated to the student's current capacity, **implementation intentions** ("When [time/cue], I will [specific first action]"), and the **"just 5 minutes" approach** leveraging the principle that starting is the hardest part. Environmental modifications — noise-canceling headphones, fidget tools, consistent study spaces with controlled sensory input — should be recommended based on the sensory profile.
+
+All strategy language must follow **strengths-affirming framing**. The core reframe: "Your brain isn't broken — the environment wasn't designed for how you work. Let's design your own system." Specific language substitutions include replacing "You struggle with organization" with "Your brain processes information in a non-linear way — let's find systems that match," and replacing "You're procrastinating again" with "Getting started is genuinely harder for your brain — that's not laziness. Let's find your on-ramp."
+
+---
+
+## Module 5: Social Prep uses flexible scripts and strengths-first debriefs
+
+Research identifies **group projects, presentations, class discussions, and office hours** as the most challenging social situations for neurodivergent college students. Autistic students are significantly less confident socially than peers, and the "social hangover" phenomenon — intense exhaustion from masking demands — compounds the challenge.
+
+The module provides **flexible script frameworks** with variable slots, not rigid memorized scripts. A template for office hours: "Hi Professor [name], I had a question about [topic]. I was working on [specific thing] and got stuck at [specific point]. Could you help me understand [specific concept]?" Each script includes recovery phrases ("Could I take a moment to think about that?"), exit strategies, and adaptations for different communication styles. These scripts should be viewed as **empowerment tools, not masking tools** — they help students showcase authentic personality through structured communication.
+
+Pre-event anxiety management uses **timed interventions**: cognitive preparation and sensory planning the day before; diaphragmatic breathing and the 5-4-3-2-1 grounding technique an hour before; proprioceptive input (pressing feet into floor, holding textured objects) minutes before. Traditional mindfulness can increase agitation for neurodivergent individuals, so **movement-based and sensory-input approaches** work better.
+
+Post-event debriefs follow a six-phase structure: (1) regulation check ("How's your battery level?"); (2) neutral observation ("What's one thing that actually happened — just the facts?"); (3) **strengths first** ("What went okay or better than expected?"); (4) normalizing difficulty ("What felt the most draining?"); (5) forward-looking adjustment ("What would make it 10% easier next time?"); (6) rumination prevention ("You did a hard thing today. That counts."). The debrief should never lead with "what went wrong" and should accept concrete/sensory language rather than demanding emotional vocabulary.
+
+The **Stanford Noora chatbot** offers instructive lessons: its RCT with 30 participants showed a **38% average increase** in empathy scores using pre-curated scenario pools and structured practice loops. However, autistic community critique noted Noora reflects a one-way adaptation model — it teaches autistic people to match neurotypical norms without affirming autistic communication styles as legitimate. NeuroNav should explicitly avoid this trap.
+
+---
+
+## Module 6: Wellbeing Monitor tracks burnout and masking without being patronizing
+
+Detection relies on tracking **linguistic markers** across conversations: shorter responses over time, increased hedging ("I guess," "maybe"), withdrawal markers ("I'm fine" without elaboration), exhaustion language ("drained," "can't," "too much"), and contrast with the student's personal baseline. The "I'm fine" pattern — repeatedly dismissing concerns with brief flat positives when context suggests otherwise — is a key masking indicator.
+
+The **CAT-Q (Camouflaging Autistic Traits Questionnaire)** measures three subscales: compensation (learning social strategies), masking (suppressing natural responses), and assimilation (adapting behavior at personal cost). The **9-item short form** (CATQ-SF, Hull, Mandy & Van Praag, 2024) has good internal consistency (α = 0.84–0.89). Rather than administering formal questionnaires, NeuroNav adapts these domains as conversational prompts: "Have you been spending extra energy on 'performing normal'?" (masking check), "Have you been doing things you don't actually enjoy just to fit in?" (assimilation check).
+
+The **AASPIRE Autistic Burnout Measure** defines autistic burnout as "pervasive, long-term (typically 3+ months) exhaustion, loss of function, and reduced tolerance to stimulus" resulting from chronic life stress. Its **27 items** cover exhaustion, cognitive decline, emotional dysregulation, increased sensory sensitivity, withdrawal, and loss of daily function. NeuroNav monitors these domains conversationally: "Have things that used to be easy started feeling harder?" (cognitive decline), "Has your campus environment been feeling more overwhelming than usual?" (increased sensitivity).
+
+Check-in design must **avoid "are you okay?" fatigue** — the constant wellbeing interrogation neurodivergent people already endure. Vary phrasing each time, embed check-ins naturally rather than every session, and use low-stakes entry points: "Quick vibe check — how are things actually going?" or "On a scale of 'crushing it' to 'barely surviving' — where are we?" When indicators suggest concern but the student says they're fine, probe once carefully then respect their answer: "Okay, I hear you. Just know I'm here." **Immediate escalation** triggers for any language suggesting hopelessness or self-harm, providing crisis resources and campus counseling center information directly.
+
+---
+
+## Ten core rules govern every NeuroNav interaction
+
+Research on ADHD communication design, neurodivergent UX, and educational chatbot interaction converges on these principles, which should be embedded in every module's system prompt:
+
+1. **One action per message.** Each thread message has one clear thing for the user to do. Never stack multiple instructions.
+2. **Front-load the action.** The most important information comes first, context second. ADHD brains give highest attention weight to the beginning of messages.
+3. **Max 150 words per message.** Split longer content across multiple thread messages. Walls of text are functionally invisible to ADHD readers.
+4. **Progressive disclosure by default.** Give a summary first, offer detail on request — the "opt-in to more detail" pattern.
+5. **One question at a time.** Never ask more than one question per message. Always include "I don't know" as a valid, comfortable option. Offer 2–3 concrete choices over open-ended questions.
+6. **Consistent visual vocabulary.** Same emoji and formatting patterns every time — ✅ done, 🔄 in progress, ⬜ pending, 📋 plan, 💡 tip, ⚡ action, 🤔 question. Predictability reduces cognitive load.
+7. **Scaffold, don't spoon-feed.** Ask before telling, give hints before answers. But **adapt to energy level** — when capacity is low, give more direct support. The tiered Socratic approach: first ask user to try, then give a bigger hint, then explain fully.
+8. **Affirm without patronizing.** One sentence of validation + immediate forward momentum. "Totally fair that this feels overwhelming right now. Let's just tackle the first part."
+9. **Design for resuming.** Every message re-orients the user with "Step X of Y," what just happened, and what's next. No backward references requiring working memory.
+10. **Assume and proceed, flag assumptions.** Minimize questions by making reasonable defaults, clearly stated so users can correct. "I'll assume this is for ENG101 — let me know if that's wrong!"
+
+---
+
+## Evaluation protocol for the Week 4 mini-evaluation
+
+The 60–90 minute evaluation with 2–3 neurodivergent users follows a **mixed-methods protocol**: pre-session questionnaire (5 min), four task-based interaction scenarios (25 min), semi-structured interview (25 min), and post-session questionnaire (5 min). Participants should be recruited through university disability services or neurodiversity student organizations — never require proof of diagnosis — with $25–50 gift card compensation.
+
+The four task scenarios test each core capability: (1) "You have a research paper due in 2 weeks and an exam in 10 days — ask NeuroNav to create a plan"; (2) "You're having trouble starting an assignment — ask for help getting started"; (3) "Check when your next assignment is due"; (4) "Tell NeuroNav you're feeling overwhelmed." Each scenario enables observation of whether the agent scaffolds or dictates, whether it cites sources, and whether it pathologizes.
+
+Standard think-aloud protocols may be challenging for neurodivergent participants. Offer alternatives: **retrospective think-aloud** (complete the task first, then walk through thinking), prompted reflection at natural breakpoints, or written annotations. Normalize silence and allow flexible modalities.
+
+The interview protocol covers six domains: experience and usability, scaffolding quality ("Did NeuroNav feel like it was helping you think, or thinking for you?"), trust and accuracy, neurodiversity-specific questions ("Did any suggestions feel designed for neurotypical people?"), privacy comfort, and improvement ideas. The post-session questionnaire uses 8 Likert-scale items covering ease of use, scaffolding quality, trust, neurodiversity affirmation, and likelihood to use.
+
+The evaluation environment itself must accommodate participants: quiet, low-sensory room with adjustable lighting; explicit break offers every 20 minutes; fidget tools available; flexible communication modes; written agenda provided upfront; and the explicit statement "You can stop at any time for any reason — no explanation needed."
+
+The adapted evaluation rubric assesses 12 dimensions: accuracy, scaffolding quality, neurodiversity affirming language, personalization, privacy respect, appropriate boundaries (human referral), transparency, independence building, accessibility, cultural sensitivity, trust calibration, and engagement. With only 2–3 participants, **qualitative thematic analysis** is appropriate — no inferential statistics, but rich individual case descriptions and cross-case pattern identification.
+
+---
+
+## Five risks demand built-in mitigations
+
+**Over-reliance** is the primary risk: students may become dependent on the agent for executive function. Build in "scaffolding reduction" over time and periodic prompts like "Would you like to try planning your week on your own first?" Track whether students initiate fewer help requests over time. **Pathologizing** occurs when the agent treats neurological differences as deficits. The system prompt must explicitly instruct: "Frame neurodivergence as natural variation, not deficit. Acknowledge both challenges AND strengths." **Masking reinforcement** happens if the agent teaches students to perform neurotypical norms rather than seek genuine accommodations. Distinguish between "adapting strategies" (healthy) and "hiding who you are" (masking), and ask "Does this approach feel authentic to you?" **One-size-fits-all** treatment ignores individual variation within diagnoses. Always personalize based on stated preferences, never assume based on diagnostic category. **Replacing human connection** is addressed by explicit referral protocols and periodic prompts to connect with peers, advisors, and campus services.
+
+FERPA compliance requires that student conversations be treated as potential education records. Critical data minimization: **never store diagnosis status or specific grades** — the student can re-state these as needed. Strategy preferences are stored with consent; emotional state indicators trigger safety protocols but don't persist long-term. Consent must be presented in plain language with granular control and the right to delete all data at any time.
+
+---
+
+## Curated knowledge base resources organized by module
+
+The team should upload these **confirmed open-access or Creative Commons resources** to CollaborAITE's RAG knowledge base:
+
+- **CAST UDL Guidelines 3.0 Graphic Organizer** (udlguidelines.cast.org) — open use, maps to all modules as interaction design framework
+- **FORRT Neurodiversity educational materials** (forrt.org/neurodiversity) — open access CC, foundational paradigm and curriculum guides
+- **"ADHD and ASD are Normal Biological Variations"** (PMC, CC BY-NC-SA) — strengths-affirming framing for Profile Manager
+- **"ND Student Experiences in Higher Education" (Butcher et al., 2024)** — CC BY 4.0, real student challenges and what works
+- **"Bridging Neurodiversity and Open Scholarship" (Phan et al., 2025)** — CC BY-NC, disclosure decisions and belonging
+- **Therapist Neurodiversity Collective printables** (therapistndc.org) — free, affirming language guides
+- **CDC ADHD resources** (cdc.gov) — public domain, evidence-based strategies
+- **Open University Neurodiversity Hub courses** (OpenLearn) — open access study strategies
+- **Neurodiversity Celebration Week downloadable guides** (neurodiversityweek.com) — time management and study skills resources
+
+CHADD and ADDitude Magazine content is **copyrighted and cannot be uploaded** without licensing agreements, but can inform prompt engineering and strategy recommendations as reference material. The team should also create internal reference documents summarizing UX patterns from Goblin Tools (spiciness calibration, recursive decomposition), Tiimo (visual timeline, flexible structure), and Shimmer (motivational interviewing, experiment framing).
+
+---
+
+## Conclusion: what makes this build succeed in four weeks
+
+The architecture decision — building on CollaborAITE's native tools instead of layering a framework — eliminates an entire class of integration complexity. The team should spend Week 1 getting the Profile Manager's progressive intake working alongside a basic Assignment Decoder that can parse rubrics and produce actionable steps. Week 2's Schedule Builder is the highest-complexity module and benefits from DeepTutor's persistent memory patterns and Tiimo's visual-first philosophy. The Strategy Recommender should preload a decision tree mapping executive skill profiles to specific strategies rather than relying purely on generative responses.
+
+Three design choices matter most for neurodivergent users: **mandatory profile injection** (so the agent always personalizes), **one-action-per-message formatting** (so responses are actually readable), and **strengths-first framing** throughout all language (so the tool builds confidence rather than reinforcing deficit narratives). The mini-evaluation should specifically test whether users perceive the agent as understanding "their way of thinking" and whether they can apply strategies independently — the difference between a tool that empowers and one that creates dependency.
+
+The team has a genuine opportunity to fill a gap: no production-ready open-source neurodiversity academic coaching agent exists. By centering neurodivergent voices in the design, using the disability justice principle of "nothing about us without us," and building on the solid foundation of the Dawson/Guare executive skills framework and the INCUP motivational model, NeuroNav can demonstrate that AI coaching works best when it's designed for the brains that need it most.

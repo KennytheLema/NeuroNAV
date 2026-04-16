@@ -1,0 +1,54 @@
+{
+  "cli_version": "0.5.2",
+  "checkpoint_id": "f1ac99c3ac72",
+  "session_id": "70bfdaba-33a1-44ba-86af-2cc144879f28",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-16T03:18:24.327889Z",
+  "branch": "main",
+  "checkpoints_count": 6,
+  "files_touched": [
+    ".claude/settings.json",
+    ".claude/skills/assignment-decoder/SKILL.md",
+    ".claude/skills/neuronav-router/SKILL.md",
+    ".claude/skills/profile-manager/SKILL.md",
+    ".claude/skills/schedule-builder/SKILL.md",
+    ".claude/skills/social-prep/SKILL.md",
+    ".claude/skills/strategy-recommender/SKILL.md",
+    ".claude/skills/wellbeing-monitor/SKILL.md",
+    "CLAUDE.md",
+    "docs/workflow-steps.md",
+    "examples/interactions/anti-patterns/01-question-barrage.md",
+    "examples/interactions/anti-patterns/02-deficit-framing.md",
+    "examples/interactions/anti-patterns/03-masking-reinforcement.md",
+    "examples/interactions/anti-patterns/04-wall-of-text.md",
+    "examples/interactions/anti-patterns/05-ignoring-wellbeing-signals.md",
+    "examples/interactions/anti-patterns/06-one-size-fits-all.md",
+    "examples/interactions/positive/01-task-initiation-maya.md",
+    "examples/interactions/positive/02-social-prep-jordan.md",
+    "examples/interactions/positive/03-schedule-building-alex.md",
+    "examples/interactions/positive/04-wellbeing-check-priya.md",
+    "examples/interactions/positive/05-audhd-scheduling-sam.md",
+    "examples/user-profiles/personas.json"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "6ec26a2d49d8",
+  "token_usage": {
+    "input_tokens": 39,
+    "cache_creation_tokens": 57738,
+    "cache_read_tokens": 740270,
+    "output_tokens": 36031,
+    "api_call_count": 23
+  },
+  "session_metrics": {
+    "turn_count": 6
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-16T03:18:24.225401Z",
+    "agent_lines": 2021,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 2021,
+    "agent_percentage": 100
+  }
+}

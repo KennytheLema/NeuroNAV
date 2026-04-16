@@ -1,0 +1,46 @@
+{
+  "cli_version": "0.5.2",
+  "checkpoint_id": "f1ac99c3ac72",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 6,
+  "files_touched": [
+    ".claude/settings.json",
+    ".claude/skills/assignment-decoder/SKILL.md",
+    ".claude/skills/neuronav-router/SKILL.md",
+    ".claude/skills/profile-manager/SKILL.md",
+    ".claude/skills/schedule-builder/SKILL.md",
+    ".claude/skills/social-prep/SKILL.md",
+    ".claude/skills/strategy-recommender/SKILL.md",
+    ".claude/skills/wellbeing-monitor/SKILL.md",
+    "CLAUDE.md",
+    "docs/workflow-steps.md",
+    "examples/interactions/anti-patterns/01-question-barrage.md",
+    "examples/interactions/anti-patterns/02-deficit-framing.md",
+    "examples/interactions/anti-patterns/03-masking-reinforcement.md",
+    "examples/interactions/anti-patterns/04-wall-of-text.md",
+    "examples/interactions/anti-patterns/05-ignoring-wellbeing-signals.md",
+    "examples/interactions/anti-patterns/06-one-size-fits-all.md",
+    "examples/interactions/positive/01-task-initiation-maya.md",
+    "examples/interactions/positive/02-social-prep-jordan.md",
+    "examples/interactions/positive/03-schedule-building-alex.md",
+    "examples/interactions/positive/04-wellbeing-check-priya.md",
+    "examples/interactions/positive/05-audhd-scheduling-sam.md",
+    "examples/user-profiles/personas.json"
+  ],
+  "sessions": [
+    {
+      "metadata": "/f1/ac99c3ac72/0/metadata.json",
+      "transcript": "/f1/ac99c3ac72/0/full.jsonl",
+      "content_hash": "/f1/ac99c3ac72/0/content_hash.txt",
+      "prompt": "/f1/ac99c3ac72/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 39,
+    "cache_creation_tokens": 57738,
+    "cache_read_tokens": 740270,
+    "output_tokens": 36031,
+    "api_call_count": 23
+  }
+}
