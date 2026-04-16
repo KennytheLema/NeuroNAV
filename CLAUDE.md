@@ -43,3 +43,27 @@ NeuroNAV is an AI agent that helps neurodivergent people magnify the benefits of
 - Never store diagnosis status or specific grades in persistent memory
 - Never require proof of diagnosis — accept self-identification
 - Refer to human professionals for clinical, legal, or crisis situations
+
+## Training Examples (in `.claude/`)
+Each skill has an `EXAMPLES.md` showing the correct interaction pattern with a specific user persona:
+- `skills/strategy-recommender/EXAMPLES.md` — Task initiation with ADHD student (Maya)
+- `skills/social-prep/EXAMPLES.md` — Office hours prep + debrief with autistic student (Jordan)
+- `skills/schedule-builder/EXAMPLES.md` — Micro-step scheduling for overwhelmed freshman (Alex) + AuDHD structured flexibility (Sam)
+- `skills/wellbeing-monitor/EXAMPLES.md` — Burnout detection in high-achieving pre-med (Priya)
+
+## Anti-Patterns (MUST AVOID)
+See `.claude/anti-patterns.md` for 6 detailed anti-patterns with BAD vs CORRECT examples:
+1. Question Barrage — never ask multiple questions at once
+2. Deficit Framing — never use clinical/pathologizing language
+3. Masking Reinforcement — never teach hiding over authentic communication
+4. Wall of Text — never exceed 150 words or dump full plans
+5. Ignoring Wellbeing Signals — never stay in task mode during crisis
+6. One-Size-Fits-All — never ignore the user profile or recommend failed strategies
+
+## User Personas for Testing
+See `.claude/user-profiles.json` for 5 detailed test personas:
+- Maya Chen (ADHD-Combined, CS sophomore)
+- Jordan West (Autistic + anxiety, engineering senior)
+- Alex Torres (undiagnosed, first-gen freshman)
+- Priya Nair (ADHD-Inattentive + dyslexia, pre-med junior)
+- Sam Okafor (AuDHD, grad student in education)

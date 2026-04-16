@@ -1,0 +1,309 @@
+{
+  "personas": [
+    {
+      "id": "maya_chen",
+      "name": "Maya Chen",
+      "demographics": {
+        "age": 20,
+        "year": "Sophomore",
+        "major": "Computer Science",
+        "university": "State University",
+        "pronouns": "she/they"
+      },
+      "identity": {
+        "self_description": "ADHD-combined type, diagnosed at 17. Also suspect I might be autistic but haven't pursued assessment. My brain is basically 47 browser tabs open at once.",
+        "diagnoses_if_shared": ["ADHD-Combined"],
+        "relationship_with_identity": "Mostly accepted it, still figuring out what's ADHD and what's just me"
+      },
+      "energy_patterns": {
+        "peak_focus_times": ["10pm-2am", "right after coffee around 10am"],
+        "low_energy_times": ["2pm-5pm is a dead zone", "mornings before 9am"],
+        "focus_duration_sweet_spot": "25-40 minutes before brain wanders, unless hyperfocusing then I lose hours",
+        "hyperfocus_triggers": ["coding projects I find interesting", "learning a new framework", "debugging when I'm close to the answer"],
+        "energy_types": {
+          "focus_spoons": "medium — good when interested, near-zero when bored",
+          "social_spoons": "low — group projects drain me fast",
+          "sensory_spoons": "medium — fluorescent lights are the worst",
+          "executive_function_spoons": "low — deciding what to do is harder than doing it",
+          "masking_spoons": "depleted by Thursday every week"
+        }
+      },
+      "executive_skills": {
+        "task_initiation": { "level": "significant challenge", "notes": "Can stare at a blank screen for 2 hours. Once started, usually fine." },
+        "planning": { "level": "moderate challenge", "notes": "Can plan when calm, falls apart under pressure" },
+        "time_management": { "level": "significant challenge", "notes": "Genuinely cannot estimate how long things take. Always wrong." },
+        "sustained_attention": { "level": "variable", "notes": "Hyperfocus or zero focus, very little in between" },
+        "working_memory": { "level": "moderate challenge", "notes": "Forgets what she was doing mid-task if interrupted" },
+        "emotional_regulation": { "level": "moderate challenge", "notes": "Rejection sensitivity is real — one bad grade can spiral into a bad week" },
+        "flexibility": { "level": "strength", "notes": "Actually good at adapting when plans change" },
+        "organization": { "level": "significant challenge", "notes": "Has 14 different note-taking systems, none fully adopted" }
+      },
+      "sensory_profile": {
+        "helps": ["lo-fi music", "hoodie with hood up", "fidget cube", "dim lighting"],
+        "bothers": ["fluorescent lights", "people eating loudly", "being cold"],
+        "environment_preferences": ["corner of library with headphones", "own room late at night"]
+      },
+      "strategies": {
+        "known_effective": ["body doubling with roommate", "Pomodoro but only 25min", "coding in a cafe"],
+        "tried_and_failed": ["bullet journaling (too much setup)", "waking up early (never stuck)", "study groups (too distracting)"],
+        "interested_in_trying": ["virtual body doubling", "time-blocking apps"]
+      },
+      "communication_preferences": {
+        "info_style": "short and direct, bullet points, skip the fluff",
+        "tone": "casual, a little funny is good, don't be too cheerful",
+        "check_in_frequency": "every few sessions, not every time",
+        "motivational_style": "challenge me — I respond to 'bet you can't finish in 20 min'"
+      },
+      "academic_context": {
+        "courses": ["CS 201 Data Structures", "ENG 102 Academic Writing", "MATH 240 Linear Algebra", "PSY 101 Intro Psych"],
+        "deadlines_relationship": "deadlines are the only thing that motivate me, but they also paralyze me",
+        "biggest_challenges": ["starting essays (CS is easier to start)", "the 2pm energy crash kills afternoon classes", "group projects where I have to coordinate with people"]
+      },
+      "scenario_notes": "Maya represents the classic ADHD college student: high ability masked by executive function challenges. She's smart and knows it, which makes struggling feel worse. Good test case for: task initiation strategies, time estimation, the challenge/urgency INCUP levers, and managing rejection sensitivity after grades."
+    },
+    {
+      "id": "jordan_west",
+      "name": "Jordan West",
+      "demographics": {
+        "age": 22,
+        "year": "Senior",
+        "major": "Mechanical Engineering",
+        "university": "Technical Institute",
+        "pronouns": "he/him"
+      },
+      "identity": {
+        "self_description": "Autistic, diagnosed at 15. Also have anxiety. I'm pretty open about being autistic — it's just how my brain works. I'm good at patterns and details but social stuff at school is exhausting.",
+        "diagnoses_if_shared": ["Autism Spectrum", "Generalized Anxiety"],
+        "relationship_with_identity": "Proud of being autistic, frustrated by systems not designed for him"
+      },
+      "energy_patterns": {
+        "peak_focus_times": ["6am-11am is when everything clicks", "sometimes a second wind at 8pm"],
+        "low_energy_times": ["after any social interaction", "3pm-6pm especially after group work"],
+        "focus_duration_sweet_spot": "Can go 90 minutes on engineering problems if uninterrupted. 15 minutes max on writing assignments.",
+        "hyperfocus_triggers": ["CAD design", "optimization problems", "anything with clear rules and feedback"],
+        "energy_types": {
+          "focus_spoons": "high for structured tasks, very low for ambiguous ones",
+          "social_spoons": "very low — one group meeting costs half a day of recovery",
+          "sensory_spoons": "low — campus is overstimulating most days",
+          "executive_function_spoons": "medium — routines help a lot",
+          "masking_spoons": "I've been trying to stop masking but it's hard in senior capstone team"
+        }
+      },
+      "executive_skills": {
+        "task_initiation": { "level": "strength for clear tasks", "notes": "If instructions are clear, he starts immediately. Ambiguity = paralysis." },
+        "planning": { "level": "strength", "notes": "Creates detailed plans — sometimes too detailed, gets stuck in planning" },
+        "time_management": { "level": "moderate challenge", "notes": "Accurate for engineering tasks, way off for writing and social tasks" },
+        "sustained_attention": { "level": "strength for interest areas", "notes": "Hyperfocus on engineering, struggles with humanities reading" },
+        "working_memory": { "level": "strength", "notes": "Excellent recall for technical information" },
+        "emotional_regulation": { "level": "significant challenge", "notes": "Meltdowns when overwhelmed sensorily, shutdown in social conflict" },
+        "flexibility": { "level": "significant challenge", "notes": "Last-minute changes are very disruptive. Needs advance notice." },
+        "organization": { "level": "strength", "notes": "Highly organized — color-coded everything, consistent systems" }
+      },
+      "sensory_profile": {
+        "helps": ["noise-canceling headphones (essential)", "weighted blanket at home", "consistent temperature", "natural light"],
+        "bothers": ["fluorescent buzz", "crowded hallways between classes", "strong perfume", "unexpected loud noises"],
+        "environment_preferences": ["single study room in engineering library", "home desk with exact setup"]
+      },
+      "strategies": {
+        "known_effective": ["rigid morning routine", "noise-canceling headphones everywhere", "detailed project plans with Gantt charts", "scripting important conversations"],
+        "tried_and_failed": ["study groups (sensory + social overload)", "open office hours (too unpredictable)", "mindfulness meditation (increased anxiety)"],
+        "interested_in_trying": ["structured co-working with one person", "email-based professor communication instead of office hours"]
+      },
+      "communication_preferences": {
+        "info_style": "detailed and precise, give me all the information, I'll process it",
+        "tone": "straightforward, no euphemisms, say what you mean",
+        "check_in_frequency": "weekly on the same day is ideal",
+        "motivational_style": "clear goals with metrics — don't tell me 'good job', tell me specifically what I did well"
+      },
+      "academic_context": {
+        "courses": ["ME 401 Senior Capstone", "ME 380 Thermal Systems", "ENG 301 Technical Writing", "ME 395 Ethics in Engineering"],
+        "deadlines_relationship": "I plan weeks ahead, but the anxiety about deadlines keeps me from sleeping",
+        "biggest_challenges": ["senior capstone team dynamics (4 teammates, weekly meetings, ambiguous roles)", "technical writing class requires 'voice' and 'style' which feels undefined", "ethics class discussions require speaking up in class"]
+      },
+      "scenario_notes": "Jordan represents the autistic engineering student with strong systematizing abilities but significant social and sensory challenges. He's high-achieving academically but the social demands of senior year are pushing him toward burnout. Good test case for: social prep scripts, ambiguous assignment decoding, sensory accommodation strategies, and burnout monitoring."
+    },
+    {
+      "id": "alex_torres",
+      "name": "Alex Torres",
+      "demographics": {
+        "age": 19,
+        "year": "Freshman",
+        "major": "Undeclared (considering Psychology or Social Work)",
+        "university": "Community College transferring to State U",
+        "pronouns": "they/them"
+      },
+      "identity": {
+        "self_description": "I think I might have ADHD but I've never been diagnosed. Also dealing with depression and anxiety. Everything just feels harder than it should. I'm first-gen college and nobody in my family really gets this stuff.",
+        "diagnoses_if_shared": ["self-suspected ADHD", "depression (diagnosed)", "anxiety (diagnosed)"],
+        "relationship_with_identity": "Uncertain, seeking understanding, sometimes doubts whether struggles are 'real enough'"
+      },
+      "energy_patterns": {
+        "peak_focus_times": ["unpredictable — some days nothing works, some days 11am-1pm is okay"],
+        "low_energy_times": ["mornings are always hard", "crashes hard after 7pm"],
+        "focus_duration_sweet_spot": "10-20 minutes on a good day, sometimes can't sit still at all",
+        "hyperfocus_triggers": ["rarely — maybe when reading about psychology topics they find personally relevant"],
+        "energy_types": {
+          "focus_spoons": "very low most days",
+          "social_spoons": "variable — sometimes craves connection, sometimes can't handle it",
+          "sensory_spoons": "moderate",
+          "executive_function_spoons": "very low — every task feels like climbing a mountain",
+          "masking_spoons": "high cost — masks a LOT as first-gen student trying to fit in"
+        }
+      },
+      "executive_skills": {
+        "task_initiation": { "level": "severe challenge", "notes": "Knows they need to start, physically cannot make themselves do it. Shame spiral follows." },
+        "planning": { "level": "significant challenge", "notes": "Doesn't know how to plan, never been taught, family didn't model it" },
+        "time_management": { "level": "significant challenge", "notes": "No concept of how long anything takes, chronic lateness" },
+        "sustained_attention": { "level": "significant challenge", "notes": "Can't read more than a page without rereading" },
+        "working_memory": { "level": "moderate challenge", "notes": "Frequently forgets assignment details, loses track of due dates" },
+        "emotional_regulation": { "level": "significant challenge", "notes": "Tears up easily when frustrated, shutdowns when overwhelmed" },
+        "flexibility": { "level": "moderate", "notes": "Okay with changes but gets anxious about uncertainty" },
+        "organization": { "level": "significant challenge", "notes": "No consistent system, everything in phone notes and random papers" }
+      },
+      "sensory_profile": {
+        "helps": ["music with lyrics (unusual — most ADHD resources say no lyrics)", "warm drinks", "being outside"],
+        "bothers": ["silence (makes thoughts too loud)", "being cold", "scratchy fabric"],
+        "environment_preferences": ["coffee shop with background noise", "outside on a bench when weather is good"]
+      },
+      "strategies": {
+        "known_effective": ["haven't found many that stick", "talking through things with a person helps", "working next to someone"],
+        "tried_and_failed": ["every planner ever made", "app-based reminders (dismisses them all)", "study groups (felt too behind to contribute)"],
+        "interested_in_trying": ["anything, honestly — willing to experiment"]
+      },
+      "communication_preferences": {
+        "info_style": "gentle and simple, not too much at once, I shut down when overwhelmed",
+        "tone": "warm and patient, like talking to a friend who gets it",
+        "check_in_frequency": "often — I forget things and sometimes need a nudge",
+        "motivational_style": "gentle encouragement, NOT tough love — I already beat myself up enough"
+      },
+      "academic_context": {
+        "courses": ["ENG 101 Composition", "PSY 101 Intro Psych", "MATH 098 College Algebra (remedial)", "FYS 100 First Year Seminar"],
+        "deadlines_relationship": "deadlines sneak up and then I panic-submit bad work at 3am",
+        "biggest_challenges": ["feeling like I don't belong in college", "can't afford tutoring", "working 20hrs/week at a restaurant", "no one in family understands what I'm going through"]
+      },
+      "scenario_notes": "Alex represents the undiagnosed/newly-exploring student with intersecting challenges: first-gen, working, possible ADHD + depression. They need the MOST scaffolding, the MOST patience, and the MOST gentle approach. Good test case for: maximum granularity task decomposition, frequent check-ins, wellbeing monitoring, imposter syndrome support, and ensuring the agent doesn't overwhelm with too many strategies at once."
+    },
+    {
+      "id": "priya_nair",
+      "name": "Priya Nair",
+      "demographics": {
+        "age": 21,
+        "year": "Junior",
+        "major": "Biology (Pre-Med)",
+        "university": "Research University",
+        "pronouns": "she/her"
+      },
+      "identity": {
+        "self_description": "ADHD-Inattentive, diagnosed last year after my grades dropped. Also dyslexic. I've been masking my whole life — people think I'm just 'spacey' or 'not trying hard enough'. My parents still think ADHD isn't real.",
+        "diagnoses_if_shared": ["ADHD-Inattentive", "Dyslexia"],
+        "relationship_with_identity": "Recently diagnosed, processing — relieved to have a name for it but angry about years of struggling without support"
+      },
+      "energy_patterns": {
+        "peak_focus_times": ["9am-12pm after meds kick in", "brief window around 4pm"],
+        "low_energy_times": ["medication crash around 2-3pm", "evenings after 8pm — brain is done"],
+        "focus_duration_sweet_spot": "45 minutes on meds, 15 minutes off meds",
+        "hyperfocus_triggers": ["lab work", "studying diseases she finds interesting", "organizing study materials"],
+        "energy_types": {
+          "focus_spoons": "medication-dependent — predictable but finite",
+          "social_spoons": "medium — pre-med social competition is draining but she's social by nature",
+          "sensory_spoons": "moderate — mostly fine except when overstimulated",
+          "executive_function_spoons": "moderate on meds, very low off meds",
+          "masking_spoons": "very depleted — years of 'I'm fine, just need to try harder' catching up"
+        }
+      },
+      "executive_skills": {
+        "task_initiation": { "level": "moderate challenge", "notes": "Better on medication but still struggles with reading-heavy tasks due to dyslexia" },
+        "planning": { "level": "moderate", "notes": "Can plan but often underestimates reading time because of dyslexia" },
+        "time_management": { "level": "significant challenge", "notes": "Reads 3x slower than peers, which throws off every time estimate" },
+        "sustained_attention": { "level": "moderate on meds", "notes": "Inattentive type — not hyperactive, just drifts" },
+        "working_memory": { "level": "significant challenge", "notes": "Has to re-read things multiple times, takes extensive notes to compensate" },
+        "emotional_regulation": { "level": "moderate challenge", "notes": "Perfectionism + new diagnosis = lots of grief about lost years" },
+        "flexibility": { "level": "moderate", "notes": "Okay with changes but anxious about falling behind" },
+        "organization": { "level": "moderate", "notes": "Compensatory strategies work but take a lot of energy to maintain" }
+      },
+      "sensory_profile": {
+        "helps": ["colored overlays for reading", "text-to-speech for long readings", "physical flashcards over digital"],
+        "bothers": ["dense blocks of text without formatting", "timed exams (anxiety + slow reading)", "crowded study spaces"],
+        "environment_preferences": ["quiet single study room", "home desk with text-to-speech setup"]
+      },
+      "strategies": {
+        "known_effective": ["text-to-speech for readings", "recording lectures", "color-coded notes", "studying with one close friend"],
+        "tried_and_failed": ["speed-reading courses (dyslexia makes this impossible)", "generic study apps", "group study sessions (too competitive, pre-med culture)"],
+        "interested_in_trying": ["accommodation for extended test time", "audio textbooks"]
+      },
+      "communication_preferences": {
+        "info_style": "clear and organized, use headers and structure, avoid dense paragraphs",
+        "tone": "professional but warm — she's in a medical mindset",
+        "check_in_frequency": "moderate — appreciates periodic check-ins, especially during exam season",
+        "motivational_style": "validation that the struggle is real + practical next steps"
+      },
+      "academic_context": {
+        "courses": ["BIO 301 Molecular Biology", "CHEM 301 Organic Chemistry II", "BIO 310 Genetics", "PHYS 201 Physics II"],
+        "deadlines_relationship": "plans around deadlines but reading assignments always take 3x longer than she expects",
+        "biggest_challenges": ["reading-heavy coursework with dyslexia", "pre-med competitive culture makes asking for help feel weak", "parents don't support diagnosis or accommodations", "medication timing — has to schedule hard work during effective window"]
+      },
+      "scenario_notes": "Priya represents the recently-diagnosed student processing years of unrecognized struggle, complicated by dyslexia co-occurrence and unsupportive family. She's academically strong but running on compensatory strategies that are burning her out. Good test case for: medication-aware scheduling, dyslexia-specific accommodations, accommodation request scripts, processing grief about late diagnosis, and recognizing masking/burnout in high-achieving students."
+    },
+    {
+      "id": "sam_okafor",
+      "name": "Sam Okafor",
+      "demographics": {
+        "age": 24,
+        "year": "Graduate (1st year MA)",
+        "major": "Education / Curriculum Design",
+        "university": "State University",
+        "pronouns": "he/him"
+      },
+      "identity": {
+        "self_description": "Autistic and ADHD — the 'AuDHD' combo. Diagnosed autistic at 8, ADHD at 20. My autism wants routine and my ADHD wants novelty, so they fight each other constantly. I'm studying education because I want to fix how schools treat neurodivergent kids.",
+        "diagnoses_if_shared": ["Autism Spectrum", "ADHD-Combined"],
+        "relationship_with_identity": "Deep understanding and advocacy — wants to help others, sometimes neglects own needs"
+      },
+      "energy_patterns": {
+        "peak_focus_times": ["7am-10am (strict routine)", "9pm-midnight (when ADHD brain wakes up)"],
+        "low_energy_times": ["early afternoon after teaching assistant duties", "after any unexpected schedule change"],
+        "focus_duration_sweet_spot": "60 min for special interest topics, 20 min for required reading, near-zero for admin tasks",
+        "hyperfocus_triggers": ["curriculum design projects", "reading about neurodiversity", "building systems and frameworks"],
+        "energy_types": {
+          "focus_spoons": "high for interest areas, very low for administrative tasks",
+          "social_spoons": "very low — TA duties eat most of it by midweek",
+          "sensory_spoons": "low — shared grad office is sensory hell",
+          "executive_function_spoons": "contradictory — great at big-picture planning, terrible at daily admin",
+          "masking_spoons": "actively trying to unmask but academic environment makes it hard"
+        }
+      },
+      "executive_skills": {
+        "task_initiation": { "level": "variable", "notes": "Instant start for passion projects, infinite delay for paperwork/emails" },
+        "planning": { "level": "strength for big picture", "notes": "Can design a semester plan but forgets to eat lunch" },
+        "time_management": { "level": "contradictory", "notes": "Autism wants exact schedules, ADHD can't follow them — constant internal conflict" },
+        "sustained_attention": { "level": "bimodal", "notes": "Either hyperfocused for 4 hours or can't sit still for 5 minutes" },
+        "working_memory": { "level": "moderate challenge", "notes": "Good for information within special interests, poor for daily tasks" },
+        "emotional_regulation": { "level": "moderate challenge", "notes": "Burnout-prone, especially when advocating for others at his own expense" },
+        "flexibility": { "level": "significant challenge", "notes": "Needs advance notice for changes, but ADHD brain randomly craves spontaneity" },
+        "organization": { "level": "contradictory", "notes": "Obsessively organized digital files, completely chaotic physical space" }
+      },
+      "sensory_profile": {
+        "helps": ["specific music playlist for each task type", "standing desk", "chewing gum", "exact pen type (Pilot G-2 0.7)"],
+        "bothers": ["shared office noise", "unexpected schedule changes", "wearing formal clothes for presentations"],
+        "environment_preferences": ["home office with exact setup", "empty classroom after hours"]
+      },
+      "strategies": {
+        "known_effective": ["parallel tasks (autism structure + ADHD novelty)", "interest-based task reframing", "time-blocking with built-in flex", "special interest as reward"],
+        "tried_and_failed": ["rigid schedules without flexibility (ADHD rebels)", "completely unstructured time (autism panics)", "neurotypical productivity advice"],
+        "interested_in_trying": ["structured unstructured time", "negotiating sensory accommodations for shared office"]
+      },
+      "communication_preferences": {
+        "info_style": "structured with the option to go deep — give me the framework then let me explore",
+        "tone": "peer-level, don't over-explain neurodiversity to me, I know more than most",
+        "check_in_frequency": "weekly, same day same time, built into routine",
+        "motivational_style": "connect everything back to my mission — helping ND kids. That's my fuel."
+      },
+      "academic_context": {
+        "courses": ["EDU 501 Curriculum Theory", "EDU 520 Inclusive Pedagogy", "EDU 590 Research Methods", "TA for EDU 201 Intro to Education"],
+        "deadlines_relationship": "respects deadlines but the AuDHD contradiction means he over-plans then can't execute",
+        "biggest_challenges": ["shared grad office sensory overload", "TA duties eating social/energy budget", "advisor expects neurotypical communication norms in meetings", "dissertation proposal looming — too big and ambiguous to start"]
+      },
+      "scenario_notes": "Sam represents the AuDHD graduate student with deep self-knowledge but contradictory needs. He knows what he needs but the academic system fights him at every turn. Good test case for: navigating the autism/ADHD tension in scheduling, accommodation negotiation scripts, advisor meeting prep, managing advocacy burnout, and respecting the user's existing expertise about their own neurodivergence."
+    }
+  ]
+}
