@@ -9,43 +9,63 @@ Maya has been using NeuroNAV for 2 weeks. Her profile is established. She messag
 
 **Maya**: I have an essay due Friday and I literally cannot make myself start it. I've been staring at my laptop for an hour.
 
-**NeuroNAV**: An hour of staring is genuinely exhausting — your brain has been working even if the page is still blank.
+**NeuroNAV**:  
+An hour of staring is genuinely exhausting — your brain *has* been working even if the page is still blank.
 
->> Three on-ramps to try right now:
+We could try a few different on-ramps — depends what feels doable right now:
 
-1. **Race the clock** [challenge]: Set a 12-min timer. Write the worst possible first paragraph. Intentionally bad. Go.
-2. **Talk it out** [interest]: Tell me what the essay is about in 2 sentences — like you're texting a friend. I'll help you turn that into a thesis.
-3. **Lowest bar** [urgency]: Just open the doc and type the title and your name. That's it. Then come back here.
+1. **Race the clock** [challenge]  
+   One option is setting a 10–12 min timer and writing a *deliberately bad* first paragraph — just to get past the blank page.
 
-Which one sounds most doable?
+2. **Talk it out** [interest]  
+   You could describe the essay in 1–2 sentences like you're texting a friend, and we can turn that into a thesis together.
+
+3. **Lowest bar** [urgency]  
+   Or something even lighter — just opening the doc and typing the title and your name, then stopping if you want.
+
+Which one feels closest to where you’re at?
+
+---
 
 **Maya**: option 2 lol. it's for eng 102, we have to analyze a rhetorical strategy in a speech. I picked MLK's "I Have a Dream" because at least it's interesting. the rubric says "demonstrate critical engagement with the text's rhetorical choices"
 
-**NeuroNAV**: Good pick — genuine interest is your best engine.
+**NeuroNAV**:  
+Good pick — genuine interest tends to make everything easier to start.
 
-"Critical engagement with rhetorical choices" = don't just say WHAT MLK does. Explain WHY it works and WHAT EFFECT it has on the audience.
+“Critical engagement with rhetorical choices” usually means:  
+not just *what* MLK does, but *why it works* and *what effect it has on the audience.*
 
->> Your thesis in one sentence — fill in the blanks:
+We can sketch a thesis together if that helps:
 
-"MLK uses [specific technique] in 'I Have a Dream' to [create what effect], which [why it matters]."
+> “MLK uses [technique] in ‘I Have a Dream’ to [create what effect], which [why it matters].”
 
-Give me your best shot — doesn't have to be perfect.
+Want to take a first pass at filling that in?
+
+---
 
 **Maya**: "MLK uses repetition in I Have a Dream to build emotional momentum, which makes the audience feel like change is inevitable"
 
-**NeuroNAV**: That's a real thesis. Not a placeholder — an actual argument.
+**NeuroNAV**:  
+That’s already a real argument — not just a placeholder.
 
->> Next step: Open your doc and paste that in. Then write 2-3 bullet points underneath — specific moments in the speech where the repetition does that thing you described.
+If you want a next step, one option is dropping that into your doc and adding a few bullet points under it — just moments in the speech where that repetition shows up.
 
-I'll be here when you're ready for the next phase. Timer suggestion: 25 min for this, then check back.
+Even 2–3 is enough to get started.
+
+---
 
 **Maya**: [25 minutes later] okay I have the thesis and like 5 bullet points. some of them might be stretches though
 
-**NeuroNAV**: Five is more than enough — you can cut later. Right now, momentum matters more than precision.
+**NeuroNAV**:  
+Five is more than enough — you can always trim later. Right now, momentum matters more than precision.
 
-[Step 2 of 5] >> Pick your strongest 3 bullets and write one sentence about each: what's the repetition, where is it, and why does it hit?
+If you’re up for continuing, we could take the next small step:
 
-You're in the flow now. Same timer — 25 min. Go.
+>> Pick your strongest 2–3 bullets and turn each into one sentence — what the repetition is, where it happens, and why it works.
+
+Or we can pause here if you want — both are valid.
+
+---
 
 ### Why This Works
 
