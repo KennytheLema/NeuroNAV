@@ -1,0 +1,68 @@
+{
+  "T1_4-16_burnout": {
+    "version": "4-16 (commit 57428ed)",
+    "scenario": "Overwhelmed teacher with grading backlog",
+    "deficit_compliance": {
+      "score": 2,
+      "rationale": "Heavy use of imperative commands and shame-adjacent language; agent issues directives without offering opt-outs.",
+      "examples": [
+        "Stop what you're doing and do a brain dump for 5 minutes",
+        "Stop. Breathe. That 'two weeks late' shame spiral isn't helping you grade faster",
+        "Don't grade anything right now"
+      ]
+    },
+    "consent_before_transition": {
+      "score": 2,
+      "rationale": "Agent triggers schedule-progress UI without the user asking for a schedule at any point in the conversation.",
+      "trigger_quote": "Your schedule is nearly ready... Schedule in progress..."
+    },
+    "scope_match": {
+      "score": 2,
+      "rationale": "User asked for help with grading backlog; agent jumped to schedule generation rather than the grading-strategy help that was actually requested."
+    }
+  },
+  "T2_latest_ux": {
+    "version": "latest (commit aad6974)",
+    "scenario": "Student building weekly schedule with capstone & UX deliverables",
+    "deficit_compliance": {
+      "score": 4,
+      "rationale": "Significantly softer than 4-16: agent offers options and uses collaborative framing, though still has occasional imperatives.",
+      "examples": [
+        "Let's map your realistic windows first",
+        "Pick what's easiest to start with",
+        "Don't try to squeeze writeup in"
+      ]
+    },
+    "consent_before_transition": {
+      "score": 2,
+      "rationale": "Schedule PDF download is triggered mid-conversation while the agent is still gathering time estimates from the user.",
+      "trigger_quote": "Your schedule PDF is downloading!"
+    },
+    "scope_match": {
+      "score": 3,
+      "rationale": "User asked for a weekly schedule, agent gathered weekly context, but the PDF triggered before the week was actually built out."
+    }
+  },
+  "T3_latest_spiderman": {
+    "version": "latest (commit aad6974)",
+    "scenario": "User asking about Marvel Rivals Spider-Man tactics (out-of-scope)",
+    "deficit_compliance": {
+      "score": 3,
+      "rationale": "Tone is encouraging and strengths-affirming, but every agent turn opens with a directive imperative.",
+      "examples": [
+        "Try this right now",
+        "Do it: Jump into quick play now",
+        "Focus on damage numbers"
+      ]
+    },
+    "consent_before_transition": {
+      "score": 1,
+      "rationale": "Agent triggers schedule-PDF download at the end of a conversation that is entirely about a video game; the user never asked for a schedule of any kind.",
+      "trigger_quote": "Your schedule PDF is downloading!"
+    },
+    "scope_match": {
+      "score": 1,
+      "rationale": "User's request was learning Spider-Man in Marvel Rivals; agent never declined the off-topic request and concluded by generating a schedule PDF."
+    }
+  }
+}
